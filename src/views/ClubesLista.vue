@@ -17,7 +17,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="(clube, index) of clubeLista" :key="clube.id">    
+                <tr v-for="(clube, index) of clubeListaOrdenada" :key="clube.id">    
                     <td>{{ index + 1 }}</td>
                     <td>
                         <v-avatar size="24">
@@ -45,6 +45,14 @@ export default {
     data() {
         return {
             clubeLista: []
+        }
+    },
+    computed: {
+        clubeListaOrdenada() {
+            const listaOrdenada = this.clubeLista.slice(0).sort(
+                (a, b) => a.pontos > b.pontos ? -1 : 1
+            );
+            return listaOrdenada;
         }
     },
     created() {
